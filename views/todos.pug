@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+    .container.mt-4
+        h1 Welcome to your todo list!
+
+        h3 Use the form below to add a todo
+
+        form(action="/todos", method="post" class="mb-4")
+            .form-group
+                label(for="title") Title
+                input.form-control(type="text", name="title" id="title")
+                small.form-text.text-muted Give your todo a cute name!
+            .form-group
+                label(for='description') Description
+                textarea.form-control(rows='3' id="description" name="description")
+                small.form-text.text-muted Describe your todo
+            button.btn.btn-primary(type="submit") Submit!
+
+        .todos
+            each todo in todos
+                unless todo.resolved
+                    .card.text-white.bg-dark.mb-3
+                        h3.card-header #{todo.title}
+                        .card-body
+                            p.card-text #{todo.description}
+                        .card-footer
+                            a.text-white(href=`/delete?id=${todo._id}&`) Mark as complete

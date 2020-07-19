@@ -1,4 +1,11 @@
 extends layout.pug
 
 block content
-    h1 Welcome!
+    .container.mt-4
+        .jumbotron
+            h1.display-4 Welcome to Todo Garden!
+            p.lead The tidiest way to manage your todos
+            hr.my-4
+            p To get started head over to #[a(href="/todos") Todos]
+            a.btn.btn-primary.btn-lrg(href="https://github.com/AlexChadwickP/TodoList" role="button") Check us out on Github!
+

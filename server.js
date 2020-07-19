@@ -7,9 +7,22 @@ let app = express();
 const urlencondedParser = bodyParser.urlencoded({ extended: false });
 const PORT = 8000;
 
-const url = "mongodb://localhost:27017";
+/*
 
-let MongoClient = require('mongodb').MongoClient(url, { useUnifiedTopology: true });
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://root:<password>@bugtracker-kcina.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+*/
+
+const uri = `mongodb+srv://root:${process.env.DB_PASS}@bugtracker-kcina.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+
+let MongoClient = require('mongodb').MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
 class Todo {
     constructor(title, description, resolved) {
